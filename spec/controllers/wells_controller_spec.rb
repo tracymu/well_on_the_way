@@ -19,12 +19,22 @@ describe WellsController do
   end
 
   describe '#create' do
+    let(:api_key) { ApiKey.generate }
     let(:response) { post :create, well: {
       latitude: -33.835279, longitude: 151.203917, suburb: 'Waverton', postcode: '2060', country: 'Australia', description: 'Knock on door, and die'
-    }, format: :json }
+    }, format: :json, api_key: api_key.key }
     let(:well) { Well.last }
     it 'creates a well' do
       expect(JSON.parse(response.body)['description']).to eq(well.description)
+    end
+  end
+
+  describe 'sending a request to create a well without an API key' do
+    let(:response) { post :create, well: {
+      latitude: -33.835279, longitude: 151.203917, suburb: 'Waverton', postcode: '2060', country: 'Australia', description: 'Knock on door, and die'
+    }, format: :json }
+    it 'responds with a 401' do
+      expect(response.code).to eq('401')
     end
   end
 end

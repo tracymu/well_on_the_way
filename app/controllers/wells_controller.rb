@@ -1,4 +1,7 @@
 class WellsController < ApplicationController
+
+  before_filter :check_api_key, only: :create
+
   def index
     @wells = Well.all
     render json: @wells, each_serializer: WellSerializer
