@@ -6,7 +6,7 @@ gem 'rails', '4.1.10'
 gem 'rails-api'
 gem 'active_model_serializers'
 gem 'spring', :group => :development
-
+gem 'carrierwave'
 
 gem 'sqlite3'
 

@@ -1,4 +1,7 @@
 class WellsController < ApplicationController
+
+  before_filter :check_api_key, only: :create
+
   def index
     @wells = Well.all
     render json: @wells, each_serializer: WellSerializer
@@ -18,6 +21,6 @@ class WellsController < ApplicationController
   private
 
   def well_params
-    params.require(:well).permit(:latitude, :longitude, :postcode, :suburb, :country, :description)
+    params.require(:well).permit(:latitude, :longitude, :postcode, :suburb, :country, :description, :image)
   end
 end
