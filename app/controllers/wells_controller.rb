@@ -21,6 +21,6 @@ class WellsController < ApplicationController
   private
 
   def well_params
-    params.require(:well).permit(:latitude, :longitude, :postcode, :suburb, :country, :description)
+    params.require(:well).permit(:latitude, :longitude, :postcode, :suburb, :country, :description, :image)
   end
 end
